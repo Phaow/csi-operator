@@ -39,11 +39,12 @@ sed -i.bak -e "s~quay.io/openshift/origin-smb-csi-driver-operator:latest~$OPERAT
 rm $MANIFEST.bak
 
 # Build the bundle and push it
-$TOOL_BIN build -t $BUNDLE_IMAGE -f bundle.Dockerfile .
+$TOOL_BIN build --platform linux/amd64 -t $BUNDLE_IMAGE -f bundle.Dockerfile .
 $TOOL_BIN push $BUNDLE_IMAGE
 
 # Build the index image and push it
-opm index add --bundles $BUNDLE_IMAGE --tag $INDEX_IMAGE --container-tool $TOOL_NAME
+opm index add --bundles $BUNDLE_IMAGE --tag $INDEX_IMAGE --container-tool $TOOL_NAME --generate
+$TOOL_BIN build --platform linux/amd64 -t $INDEX_IMAGE -f index.Dockerfile .
 $TOOL_BIN push $INDEX_IMAGE
 
 
