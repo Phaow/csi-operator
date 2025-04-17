@@ -1,0 +1,26 @@
+# Generated file. Do not edit. Update using "make update".
+#
+# Loaded from base/node_metrics_servicemonitor.yaml
+# Applied JSON patch common/metrics/service_monitor_add_port.yaml.patch
+#
+#
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: aws-ebs-csi-driver-node-monitor
+  namespace: ${NODE_NAMESPACE}
+spec:
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    interval: 30s
+    path: /metrics
+    port: driver-node-m
+    scheme: https
+    tlsConfig:
+      caFile: /etc/prometheus/configmaps/serving-certs-ca-bundle/service-ca.crt
+      serverName: aws-ebs-csi-driver-node-metrics.${NAMESPACE}.svc
+  jobLabel: component
+  selector:
+    matchLabels:
+      app: aws-ebs-csi-driver-node-metrics

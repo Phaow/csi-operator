@@ -18,6 +18,10 @@ spec:
             - --endpoint=$(CSI_ENDPOINT)
             - --logtostderr
             - --v=${LOG_LEVEL}
+            # A prefix of the mountpoints of all CSI-managed volumes. 
+            # If this value is non-empty, all volumes mounted to a path beginning with the provided value are assumed to be CSI volumes 
+            # which owned by the EBS CSI Driver and safe to treat as such (for example, by exposing volume metrics).
+            - --csi-mount-point-prefix=/var/lib/kubelet
             - --reserved-volume-attachments=1
           env:
             - name: CSI_ENDPOINT

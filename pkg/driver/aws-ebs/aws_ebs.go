@@ -114,6 +114,14 @@ func GetAWSEBSGeneratorConfig() *generator.CSIDriverGeneratorConfig {
 			LivenessProbePort:          10300,
 			// 10305 is used for healthcheck of efs-operator
 			NodeRegistrarHealthCheckPort: 10309,
+			MetricsPorts: []generator.MetricsPort{
+				{
+					LocalPort:           commongenerator.AWSEBSLoopbackMetricsPortStart + 1,
+					InjectKubeRBACProxy: true,
+					ExposedPort:         commongenerator.AWSEBSExposedMetricsPortStart + 1,
+					Name:                "driver-node-m",
+				},
+			},
 			Sidecars: []generator.SidecarConfig{
 				commongenerator.DefaultNodeDriverRegistrar,
 				commongenerator.DefaultLivenessProbe.WithExtraArguments(

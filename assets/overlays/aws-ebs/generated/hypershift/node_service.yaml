@@ -1,0 +1,26 @@
+# Generated file. Do not edit. Update using "make update".
+#
+# Loaded from base/node_metrics_service.yaml
+# Applied strategic merge patch common/metrics/service_add_port.yaml
+#
+#
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.openshift.io/serving-cert-secret-name: aws-ebs-csi-driver-node-metrics-serving-cert
+  labels:
+    app: aws-ebs-csi-driver-node-metrics
+  name: aws-ebs-csi-driver-node-metrics
+  namespace: ${NODE_NAMESPACE}
+spec:
+  ports:
+  - name: driver-node-m
+    port: 9202
+    protocol: TCP
+    targetPort: driver-node-m
+  selector:
+    app: aws-ebs-csi-driver-node
+  sessionAffinity: None
+  type: ClusterIP
