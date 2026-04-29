@@ -24,8 +24,8 @@ TOOL_NAME=$(basename $TOOL_BIN)
 # OPERATOR_IMAGE=$2
 # BUNDLE_IMAGE=$3
 # INDEX_IMAGE=$4
-DRIVER_IMAGE="quay.io/pewang/csi-driver:efsv421"
-OPERATOR_IMAGE="quay.io/pewang/csi-operator:efsv421"
+DRIVER_IMAGE="quay.io/pewang/csi-driver:efsv422"
+OPERATOR_IMAGE="quay.io/pewang/csi-operator:efsv422"
 BUNDLE_IMAGE="quay.io/pewang/efs-csi-operator:bundle"
 INDEX_IMAGE="quay.io/pewang/efs-csi-operator:index"
 
